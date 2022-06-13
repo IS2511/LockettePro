@@ -3,10 +3,10 @@ plugins {
     id 'maven-publish'
     id("xyz.jpenilla.run-paper") version "1.0.6"
 }
-// Suppiled by Jenkins
+// Supplied by Jenkins
 ext.majorVersion = 2
-ext.minorVersion = 12
-ext.minecraftVersion = "1.18.1"
+ext.minorVersion = 13
+ext.minecraftVersion = "1.19"
 
 ext.buildNumber = System.env.BUILD_NUMBER == null ? "x"                : "$System.env.BUILD_NUMBER"
 ext.mavenDirectory = System.env.MAVEN_DIR == null ? "$projectDir/repo" : "$System.env.MAVEN_DIR"
@@ -15,15 +15,15 @@ ext.jdDirectory = System.env.JAVADOCS_DIR == null ? null               : "$Syste
 sourceCompatibility = 17
 targetCompatibility = 17
 
-// differet version convension from Nyaa plugins
+// Different version convention from Nyaa plugins
 group = "me.crafter.mc"
 archivesBaseName = "LockettePro-mc$minecraftVersion"
 version = "$majorVersion.$minorVersion.$buildNumber".toString()
 runServer {
-    minecraftVersion("1.18.1")
+    minecraftVersion("1.19")
 }
 
-// extra compile warnings
+// Extra compile warnings
 compileJava {
     options.compilerArgs += ["-Xlint:deprecation"]
     options.encoding = 'UTF-8'
@@ -36,23 +36,23 @@ repositories {
     maven {name 'sk89q-repo'; url "https://maven.enginehub.org/repo/" }
     maven {name 'playpro';    url 'https://maven.playpro.com/'}
     maven {name 'vault-repo'; url 'https://jitpack.io'}
-    maven {name 'dmulloy2';   url 'https://repo.dmulloy2.net/content/groups/public/'}
+    maven {name 'dmulloy2';   url 'https://repo.dmulloy2.net/repository/public/'}
 }
 
 dependencies {
-    implementation 'org.jetbrains:annotations:22.0.0'
+    implementation 'org.jetbrains:annotations:23.0.0'
     compileOnly "org.spigotmc:spigot-api:$minecraftVersion-R0.1-SNAPSHOT"
-    compileOnly ("com.github.MilkBowl:VaultAPI:1.7"){ transitive = false}
+    compileOnly ("com.github.MilkBowl:VaultAPI:1.7"){ transitive = false }
     compileOnly ('com.sk89q.worldguard:worldguard-bukkit:7.0.7-SNAPSHOT') { transitive = false }
-    compileOnly (group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.8.0-SNAPSHOT"){ transitive = false}
-    compileOnly ('net.coreprotect:coreprotect:20.4'){ transitive = false}
+    compileOnly (group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.8.0"){ transitive = false }
+    compileOnly ('net.coreprotect:coreprotect:20.4'){ transitive = false }
 }
 
 processResources {
     expand version: project.version
 }
 
-// maven publications
+// Maven publications
 task sourcesJar(type: Jar) {
     archiveClassifier.set("sources")
     from sourceSets.main.java.srcDirs
