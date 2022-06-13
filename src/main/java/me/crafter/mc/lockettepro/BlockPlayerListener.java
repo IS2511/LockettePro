@@ -257,8 +257,7 @@ public class BlockPlayerListener implements Listener {
             }
         }
         switch (action) {
-            case LEFT_CLICK_BLOCK:
-            case RIGHT_CLICK_BLOCK:
+            case LEFT_CLICK_BLOCK, RIGHT_CLICK_BLOCK -> {
                 Player player = event.getPlayer();
                 if (((LocketteProAPI.isLocked(block) && !LocketteProAPI.isUser(block, player)) ||
                         (LocketteProAPI.isUpDownLockedDoor(block) && !LocketteProAPI.isUserUpDownLockedDoor(block, player)))
@@ -299,9 +298,9 @@ public class BlockPlayerListener implements Listener {
                         }
                     }
                 }
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
     }
 

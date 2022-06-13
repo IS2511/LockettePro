@@ -1,6 +1,6 @@
 package me.crafter.mc.lockettepro;
 
-import java.util.Iterator;
+//import java.util.Iterator;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;

@@ -59,7 +59,7 @@ public class Config {
         String enablequickprotectstring = config.getString("enable-quick-protect", "true");
 
         switch (enablequickprotectstring.toLowerCase()) {
-            case "true" -> enablequickprotect = 1;
+//            case "true" -> enablequickprotect = 1;
             case "false" -> enablequickprotect = 0;
             case "sneak" -> enablequickprotect = 2;
             default -> enablequickprotect = 1;
@@ -96,7 +96,7 @@ public class Config {
         switch (blockhopperminecartstring.toLowerCase()) {
             case "true" -> blockhopperminecart = 1;
             case "false" -> blockhopperminecart = 0;
-            case "remove" -> blockhopperminecart = 2;
+//            case "remove" -> blockhopperminecart = 2;
             default -> blockhopperminecart = 2;
         }
 
@@ -107,7 +107,7 @@ public class Config {
         lockexpirestring = ChatColor.translateAlternateColorCodes('&',
                 config.getString("lock-expire-string", "&3[Expired]"));
         List<String> unprocesseditems = config.getStringList("lockables");
-        lockables = new HashSet<Material>();
+        lockables = new HashSet<>();
         for (String unprocesseditem : unprocesseditems) {
             if (unprocesseditem.equals("*")) {
                 Collections.addAll(lockables, Material.values());

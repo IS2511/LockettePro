@@ -39,7 +39,7 @@ public class BlockInventoryMoveListener implements Listener {
         if (Config.isItemTransferInBlocked()) {
             if (isInventoryLocked(event.getDestination())) {
                 event.setCancelled(true);
-                return;
+//                return;
             }
         }
     }

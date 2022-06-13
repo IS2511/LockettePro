@@ -244,28 +244,23 @@ public class LocketteProAPI {
         switch (block.getType()) {
 
             // This is extra interfere block
-            case HOPPER:
-            case DISPENSER:
-            case DROPPER:
+            case HOPPER, DISPENSER, DROPPER -> {
                 if (!Config.isInterferePlacementBlocked()) return false;
                 for (BlockFace blockface : allfaces) {
                     Block newblock = block.getRelative(blockface);
                     switch (newblock.getType()) {
-                        case CHEST:
-                        case TRAPPED_CHEST:
-                        case HOPPER:
-                        case DISPENSER:
-                        case DROPPER:
+                        case CHEST, TRAPPED_CHEST, HOPPER, DISPENSER, DROPPER -> {
                             if (isLocked(newblock) && !isOwner(newblock, player)) {
                                 return true;
                             }
-                        default:
-                            break;
+                        }
+                        default -> {
+                        }
                     }
                 }
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
         return false;
     }
